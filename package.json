@@ -3,22 +3,25 @@
   "version": "1.0.4",
   "description": "基于本地mock文件生成本地mock服务器",
   "main": "index.js",
+  "scripts": {
+    "publish2": " np --no-cleanup --yolo --any-branch",
+    "publish:cimi": "cimi patch master"
+  },
   "directories": {
     "example": "example"
   },
   "dependencies": {
     "babel-preset-env": "^1.7.0",
     "babel-register": "^6.26.0",
+    "chalk": "^5.0.1",
     "express": "^4.18.1",
+    "glob": "^8.0.3",
+    "pino": "^8.5.0",
     "pino-pretty": "^9.1.0"
   },
   "devDependencies": {
     "cimi": "^1.1.18",
     "np": "^7.6.2"
-  },
-  "scripts": {
-    "publish2": " np --no-cleanup --yolo --any-branch",
-    "testPublish": "cimi patch master"
   },
   "keywords": [
     "mock",
