@@ -1,6 +1,6 @@
 {
   "name": "visualization-mock-server",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "基于本地mock文件生成本地mock服务器",
   "main": "index.js",
   "directories": {
@@ -13,10 +13,12 @@
     "pino-pretty": "^9.1.0"
   },
   "devDependencies": {
+    "cimi": "^1.1.18",
     "np": "^7.6.2"
   },
   "scripts": {
-    "publish": " np --no-cleanup --yolo --any-branch"
+    "publish2": " np --no-cleanup --yolo --any-branch",
+    "testPublish": "cimi patch master"
   },
   "keywords": [
     "mock",
