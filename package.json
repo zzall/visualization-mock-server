@@ -1,6 +1,6 @@
 {
   "name": "visualization-mock-server",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "基于本地mock文件生成本地mock服务器",
   "main": "index.js",
   "scripts": {
