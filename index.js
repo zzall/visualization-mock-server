@@ -7,6 +7,7 @@ const path = require('path')
 const pino = require('pino')
 const chalk = require('chalk');
 const express = require('express');
+const P = require('pino');
 const app = express()
 const logger = pino({
   transport: {
@@ -69,16 +70,22 @@ const createRequest = opt => {
  */
 const generateServerWithMockFiles = (files = []) => {
   files?.map(file => {
-    const data = require(path.resolve(__dirname, file))
-    Object.entries(data?.default || {}).map(item => {
-      const [method = 'get', url = ''] = item[0].split(' ').filter(Boolean)
-      const reqKey = `${method} ${url}`;
-      if (cacheUrlList.includes(reqKey)) {
-        return logger.warn(chalk.yellow(`发现了重复的mock代理，url为：${reqKey}`))
-      }
-      cacheUrlList.push(reqKey)
-      createRequest({ method, url, key: item[0], value: item[1] })
-    })
+    try {
+      const data = require(path.resolve(__dirname, file))
+      Object.entries(data?.default || {}).map(item => {
+        const [method = 'get', url = ''] = item[0].split(' ').filter(Boolean)
+        const reqKey = `${method} ${url}`;
+        if (cacheUrlList.includes(reqKey)) {
+          return logger.warn(chalk.yellow(`The repeated Mock proxy, URL is：${reqKey}`))
+        }
+        cacheUrlList.push(reqKey)
+        logger.info(`Mock proxy URL：${reqKey}`)
+        createRequest({ method, url, key: item[0], value: item[1] })
+      })
+    } catch (err) {
+      logger.error(chalk.red(err))
+    }
+
   })
 
 }
@@ -96,11 +103,11 @@ const initMockServer = options => {
   }
   const { port, host } = options
   const mockFiles = getMockFiles()
-  logger.info('加载mock文件中...')
+  logger.info('Loading mock files...')
   generateServerWithMockFiles(mockFiles)
-  logger.info('加载mock完成，开始初始化mock server...')
+  logger.info('Loaded mock files.Initing mock server...')
   app.listen(port, host, () => {
-    logger.info(`mock服务器地址：http://${host}:${port}`)
+    logger.info(chalk.green(`Mock server：http://${host}:${port}`))
   })
 }
 
