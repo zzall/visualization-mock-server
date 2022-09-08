@@ -1,5 +1,8 @@
 ## mock-server
 
+![version](https://badge.fury.io/js/visualization-mock-server.svg)
+![install size](https://packagephobia.com/badge?p=visualization-mock-server)
+
 基于本地 mock 文件生成本地 mock 服务器
 
 服务器基于`express`
@@ -71,3 +74,8 @@ const initMockServer = require("visualization-mock-server");
 
 initMockServer({ port: 4001, host: "localhost" });
 ```
+
+
+## TODO
+* 可借助`express`插件丰富mock server的用法
+  * express-art-template art-template body-parser 等
