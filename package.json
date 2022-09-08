@@ -6,12 +6,14 @@
   "directories": {
     "example": "example"
   },
-  "devDependencies": {
+  "peerDependencies": {
     "babel-preset-env": "^1.7.0",
     "babel-register": "^6.26.0",
     "express": "^4.18.1",
-    "np": "^7.6.2",
     "pino-pretty": "^9.1.0"
+  },
+  "devDependencies": {
+    "np": "^7.6.2"
   },
   "scripts": {
     "publish": " np --no-cleanup --yolo --any-branch"
