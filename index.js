@@ -3,11 +3,9 @@ require('babel-register')({
 })
 
 const glob = require("glob");
-const path = require('path')
 const pino = require('pino')
 const chalk = require('chalk');
 const express = require('express');
-const P = require('pino');
 const app = express()
 const logger = pino({
   transport: {
@@ -33,7 +31,37 @@ const cacheUrlList = []
  * @returns string[] 返回所有的mock文件路径
  */
 const getMockFiles = (baseUrl = '') => {
-  return glob.sync(`${baseUrl ? `${baseUrl}/` : ''}mock/**/*.[jt]s`)
+  const globPath = `${baseUrl ? `${baseUrl}/`.replace('//', '/') : ""}mock/**/*.[jt]s`;
+  // const testG = __dirname;
+  return glob.sync(globPath)
+}
+
+
+
+/**
+ * 根据mock文件生成requet
+ * @param {string[]} files 
+ */
+const generateServerWithMockFiles = (files = []) => {
+  files?.map(file => {
+    try {
+      const data = require(file)
+      Object.entries(data?.default || {}).map(item => {
+        const [method = 'get', url = ''] = item[0].split(' ').filter(Boolean)
+        const reqKey = `${method} ${url}`;
+        if (cacheUrlList.includes(reqKey)) {
+          return logger.warn(chalk.yellow(`The repeated Mock proxy, URL is：${reqKey}`))
+        }
+        cacheUrlList.push(reqKey)
+        logger.info(`Mock proxy URL：${reqKey}`)
+        createRequest({ method, url, key: item[0], value: item[1] })
+      })
+    } catch (err) {
+      logger.error(chalk.red(err))
+    }
+
+  })
+
 }
 
 /**
@@ -64,32 +92,6 @@ const createRequest = opt => {
   })
 }
 
-/**
- * 根据mock文件生成requet
- * @param {string[]} files 
- */
-const generateServerWithMockFiles = (files = []) => {
-  files?.map(file => {
-    try {
-      const data = require(path.resolve(__dirname, file))
-      Object.entries(data?.default || {}).map(item => {
-        const [method = 'get', url = ''] = item[0].split(' ').filter(Boolean)
-        const reqKey = `${method} ${url}`;
-        if (cacheUrlList.includes(reqKey)) {
-          return logger.warn(chalk.yellow(`The repeated Mock proxy, URL is：${reqKey}`))
-        }
-        cacheUrlList.push(reqKey)
-        logger.info(`Mock proxy URL：${reqKey}`)
-        createRequest({ method, url, key: item[0], value: item[1] })
-      })
-    } catch (err) {
-      logger.error(chalk.red(err))
-    }
-
-  })
-
-}
-
 
 /**
  * 初始化mock server入口
@@ -98,16 +100,16 @@ const generateServerWithMockFiles = (files = []) => {
 const initMockServer = options => {
   const PORT = 3000, HOST = 'localhost'
   options = {
-    port: PORT, host: HOST,
+    port: PORT, host: HOST, base: process.cwd(),
     ...options
   }
-  const { port, host } = options
-  const mockFiles = getMockFiles()
+  const { port, host, base } = options
+  const mockFiles = getMockFiles(base)
   logger.info('Loading mock files...')
   generateServerWithMockFiles(mockFiles)
-  logger.info('Loaded mock files.Initing mock server...')
+  logger.info('Loaded mock files. Initing mock server...')
   app.listen(port, host, () => {
-    logger.info(chalk.green(`Mock server：http://${host}:${port}`))
+    logger.info(chalk.green(`Mock server is Ready：http://${host}:${port}`))
   })
 }
 
