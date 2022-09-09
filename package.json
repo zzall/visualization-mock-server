@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "publish2": " np --no-cleanup --yolo --any-branch",
-    "publish:cimi": "cimi patch master"
+    "publish:cimi:patch": "cimi patch master",
+    "publish:cimi:minor": "cimi minor master",
+    "publish:cimi:major": "cimi major master"
   },
   "directories": {
     "example": "example"
