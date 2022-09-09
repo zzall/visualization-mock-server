@@ -1,9 +1,8 @@
 {
   "name": "visualization-mock-server",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "基于本地mock文件生成本地mock服务器",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "publish2": " np --no-cleanup --yolo --any-branch",
     "publish:cimi": "cimi patch master"
@@ -22,12 +21,14 @@
     "express": "^4.18.1",
     "glob": "^8.0.3",
     "node-watch": "^0.7.3",
+    "ora": "^5.4.1",
     "pino": "^8.5.0",
     "pino-pretty": "^9.1.0"
   },
   "devDependencies": {
     "cimi": "^1.1.18",
-    "np": "^7.6.2"
+    "np": "^7.6.2",
+    "ora": "^6.1.2"
   },
   "keywords": [
     "mock",

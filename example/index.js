@@ -1,4 +1,5 @@
-import initMockServer from "../index.js";
+// import initMockServer from "../index.js";
+const initMockServer = require("../index");
 // import serverWatch from '../lib/serverWatch.js'
 
 // serverWatch()
