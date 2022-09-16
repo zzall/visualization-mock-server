@@ -1,4 +1,4 @@
-## mock-server
+## visualization-mock-server
 
 ![version](https://badge.fury.io/js/visualization-mock-server.svg)
 <!-- ![install size](https://packagephobia.com/badge?p=visualization-mock-server) -->
