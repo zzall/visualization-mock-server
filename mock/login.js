@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   'GET /function': (_req, res) => {
     res.json({
       success: true,
@@ -8,7 +8,7 @@ export default {
   },
   'GET /object': {
     name: 'zzz',
-    age: 21
+    age: 2122
   },
   'GET /string': 'string',
   'GET /boolean': false,

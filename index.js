@@ -2,6 +2,7 @@
 
 // import initMockServer from "./lib/mockServer.js";
 const initMockServer = require("./lib/mockServer");
+const devServerMiddleware = require("./lib/devServerMiddleware");
 
 // import dinc from "dynamic-import-no-cache";
 
@@ -14,4 +15,7 @@ const initMockServer = require("./lib/mockServer");
 // 
 
 // export default initMockServer;
-module.exports = initMockServer;
+module.exports = {
+  initMockServer,
+  devServerMiddleware
+};
