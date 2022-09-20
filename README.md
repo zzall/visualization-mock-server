@@ -1,3 +1,5 @@
+
+
 ## visualization-mock-server
 
 ![version](https://badge.fury.io/js/visualization-mock-server.svg)
@@ -69,13 +71,30 @@ npm i visualization-mock-server -D
 
 ### 使用
 
+#### mockServer使用
+
 ```javascript
 const initMockServer = require("visualization-mock-server");
 
 initMockServer({ port: 4001, host: "localhost" });
 ```
 
+#### devServerMiddleware使用
+
+```javascript
+const { devServerMiddleware } = require('visualization-mock-server')
+
+const { onBeforeSetupMiddleware, before } = devServerMiddleware();
+```
+
+针对不同的`webpack-dev-server`版本，考虑使用`onBeforeSetupMiddleware`与`before`
+
+具体可查看[devServer暴露的api情况](https://webpack.docschina.org/configuration/dev-server/)
 
 ## TODO
+
 * 可借助`express`插件丰富mock server的用法
   * express-art-template art-template body-parser 等
+* cicd
+* 自动化构建流程
+
