@@ -1,54 +1,54 @@
 {
-  "name": "visualization-mock-server",
-  "version": "1.4.23",
-  "description": "基于本地mock文件生成本地mock服务器",
-  "main": "index.js",
-  "scripts": {
-    "publish2": " np --no-cleanup --yolo --any-branch",
-    "publish:cimi:patch": "cimi patch master",
-    "publish:cimi:minor": "cimi minor master",
-    "publish:cimi:major": "cimi major master"
-  },
-  "directories": {
-    "example": "example"
-  },
-  "dependencies": {
-    "babel-preset-env": "^1.7.0",
-    "babel-register": "^6.26.0",
-    "chalk": "^4.1.2",
-    "dynamic-import-no-cache": "^1.0.3",
-    "express": "^4.18.1",
-    "glob": "^8.0.3",
-    "node-watch": "^0.7.3",
-    "ora": "^5.4.1",
-    "pino": "^8.5.0",
-    "pino-pretty": "^9.1.0"
-  },
-  "devDependencies": {
-    "cimi": "^1.1.18",
-    "np": "^7.6.2",
-    "ora": "^6.1.2"
-  },
-  "keywords": [
-    "mock",
-    "server",
-    "node",
-    "simple",
-    "easy",
-    "extending"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/zzall/mock-server"
-  },
-  "funding": {
-    "type": "individual",
-    "url": "https://zzall.github.io/#/fund"
-  },
-  "bugs": {
-    "url": "https://github.com/zzall/mock-server",
-    "email": "1809642355@qq.com"
-  },
-  "author": "zzall <1809642355@qq.com>",
-  "license": "MIT"
+	"name": "visualization-mock-server",
+	"version": "1.5.23",
+	"description": "基于本地mock文件生成本地mock服务器",
+	"main": "index.js",
+	"scripts": {
+		"publish2": " np --no-cleanup --yolo --any-branch",
+		"publish:cimi:patch": "cimi patch master",
+		"publish:cimi:minor": "cimi minor master",
+		"publish:cimi:major": "cimi major master"
+	},
+	"directories": {
+		"example": "example"
+	},
+	"dependencies": {
+		"babel-preset-env": "^1.7.0",
+		"babel-register": "^6.26.0",
+		"chalk": "^4.1.2",
+		"dynamic-import-no-cache": "^1.0.3",
+		"express": "^4.18.1",
+		"glob": "^8.0.3",
+		"node-watch": "^0.7.3",
+		"ora": "^5.4.1",
+		"pino": "^8.5.0",
+		"pino-pretty": "^9.1.0"
+	},
+	"devDependencies": {
+		"cimi": "^1.1.18",
+		"np": "^7.6.2",
+		"ora": "^6.1.2"
+	},
+	"keywords": [
+		"mock",
+		"server",
+		"node",
+		"simple",
+		"easy",
+		"extending"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/zzall/mock-server"
+	},
+	"funding": {
+		"type": "individual",
+		"url": "https://zzall.github.io/#/fund"
+	},
+	"bugs": {
+		"url": "https://github.com/zzall/mock-server",
+		"email": "1809642355@qq.com"
+	},
+	"author": "zzall <1809642355@qq.com>",
+	"license": "MIT"
 }

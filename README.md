@@ -1,8 +1,7 @@
-
-
 ## visualization-mock-server
 
 ![version](https://badge.fury.io/js/visualization-mock-server.svg)
+
 <!-- ![install size](https://packagephobia.com/badge?p=visualization-mock-server) -->
 
 基于本地 mock 文件生成本地 mock 服务器
@@ -24,30 +23,30 @@ login.js
 
 ```javascript
 export default {
-  "GET /function": (_req, res) => {
-    res.json({
-      success: true,
-      data: {},
-      errorCode: 0,
-    });
-  },
-  "GET /object": {
-    name: "zzz",
-    age: 21,
-  },
-  "GET /string": "string",
-  "GET /boolean": false,
-  "GET /number": 1,
-  "GET /array": [
-    {
-      name: "zzz",
-      age: 21,
-    },
-    {
-      name: "zzz2",
-      age: 22,
-    },
-  ],
+	"GET /function": (_req, res) => {
+		res.json({
+			success: true,
+			data: {},
+			errorCode: 0,
+		});
+	},
+	"GET /object": {
+		name: "zzz",
+		age: 21,
+	},
+	"GET /string": "string",
+	"GET /boolean": false,
+	"GET /number": 1,
+	"GET /array": [
+		{
+			name: "zzz",
+			age: 21,
+		},
+		{
+			name: "zzz2",
+			age: 22,
+		},
+	],
 };
 ```
 
@@ -71,7 +70,7 @@ npm i visualization-mock-server -D
 
 ### 使用
 
-#### mockServer使用
+#### mockServer 使用
 
 ```javascript
 const initMockServer = require("visualization-mock-server");
@@ -79,22 +78,33 @@ const initMockServer = require("visualization-mock-server");
 initMockServer({ port: 4001, host: "localhost" });
 ```
 
-#### devServerMiddleware使用
+#### devServerMiddleware 使用
 
 ```javascript
-const { devServerMiddleware } = require('visualization-mock-server')
+const { devServerMiddleware } = require("visualization-mock-server");
 
 const { onBeforeSetupMiddleware, before } = devServerMiddleware();
+
+// webpack.config.js
+
+module.exports = {
+	devServer: {
+		onBeforeSetupMiddleware: devServerMiddleware().onBeforeSetupMiddleware,
+	},
+	// 更早的devServer版本需要用before
+	devServer: {
+		before: devServerMiddleware().before,
+	},
+};
 ```
 
 针对不同的`webpack-dev-server`版本，考虑使用`onBeforeSetupMiddleware`与`before`
 
-具体可查看[devServer暴露的api情况](https://webpack.docschina.org/configuration/dev-server/)
+具体可查看[devServer 暴露的 api 情况](https://webpack.docschina.org/configuration/dev-server/)
 
 ## TODO
 
-* 可借助`express`插件丰富mock server的用法
-  * express-art-template art-template body-parser 等
-* cicd
-* 自动化构建流程
-
+- 可借助`express`插件丰富 mock server 的用法
+  - express-art-template art-template body-parser 等
+- cicd
+- 自动化构建流程
